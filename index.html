@@ -1,0 +1,912 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Unofficial fan tribute to Patrick Jane of The Mentalist.">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Patrick Jane</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Syncopate:wght@400;700&family=Jost:wght@300;400;500&display=swap">
+<style>
+/* Layout: a spy-film title sequence. Letterboxed black, a liquid chrome disc behind the name, then chapters set like film credits. Single dark look by design. */
+:root{
+  color-scheme:dark;
+  --bg:#070707; --plate:#101011; --edge:#262628; --edge-hi:#46464a;
+  --ink:#f1f1ef; --muted:#9a9a98; --dim:#626262; --silver:#cfcfcd;
+  --chrome:linear-gradient(180deg,#ffffff 0%,#d6d6d4 38%,#6a6a6c 50%,#e6e6e4 66%,#9b9b9d 100%);
+  --serif:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --wide:"Syncopate","Arial Black",sans-serif;
+  --sans:"Jost","Futura","Century Gothic",system-ui,sans-serif;
+  --wrap:1200px;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:300 18px/1.7 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:#000}
+::selection{background:#e6e6e4;color:#070707}
+:focus-visible{outline:1px solid var(--silver);outline-offset:4px}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.chrome{background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent}
+.wide{font:400 11px/1.6 var(--wide);letter-spacing:.42em;text-transform:uppercase;color:var(--muted)}
+.cut{--c:16px;clip-path:polygon(var(--c) 0,100% 0,100% calc(100% - var(--c)),calc(100% - var(--c)) 100%,0 100%,0 var(--c))}
+.chapter{display:flex;align-items:baseline;gap:18px;margin-bottom:28px}
+.chapter i{font:italic 400 44px/1 var(--serif)}
+.chapter::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--edge-hi),transparent)}
+h2{margin:0;font:italic 400 clamp(48px,7.4vw,112px)/.95 var(--serif);letter-spacing:-.02em;text-wrap:balance}
+h2 b{font-style:normal;font-weight:400}
+
+/* bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid #1b1b1c}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:16px}
+.mark{font:700 12px/1 var(--wide);letter-spacing:.5em;white-space:nowrap}
+.bar nav{display:flex;gap:30px}
+.bar nav a{font:400 12px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;text-decoration:none;color:var(--muted);padding-block:6px;border-bottom:1px solid transparent;transition:.25s}
+.bar nav a:hover{color:var(--ink);border-color:var(--silver)}
+
+/* hero: title sequence */
+.hero{position:relative;overflow:hidden;background:#000;isolation:isolate;text-align:center}
+.hero::before,.hero::after{content:"";position:absolute;left:0;right:0;height:clamp(28px,5vw,64px);background:#000;z-index:3}
+.hero::before{top:0;border-bottom:1px solid #161617}.hero::after{bottom:0;border-top:1px solid #161617}
+.hero .stage{position:relative;min-height:min(860px,94vh);display:grid;place-items:center;padding-block:clamp(90px,12vw,140px)}
+.disc{position:absolute;left:50%;top:50%;width:min(78vw,640px);aspect-ratio:1;max-width:100%;transform:translate(-50%,-50%);border-radius:50%;overflow:hidden;z-index:-1;
+  box-shadow:0 0 0 1px rgba(255,255,255,.08),0 0 120px 10px rgba(255,255,255,.06);animation:breathe 9s ease-in-out infinite}
+.disc canvas{width:100%;height:100%;display:block}
+.disc::after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 50% 50%,rgba(0,0,0,.15) 0%,rgba(0,0,0,.55) 62%,rgba(0,0,0,.92) 100%)}
+@keyframes breathe{50%{transform:translate(-50%,-50%) scale(1.035)}}
+.rings{position:absolute;left:50%;top:50%;width:min(96vw,860px);aspect-ratio:1;max-width:100%;transform:translate(-50%,-50%);z-index:-1;border-radius:50%;border:1px solid rgba(255,255,255,.07)}
+.rings::before{content:"";position:absolute;inset:7%;border-radius:50%;border:1px dashed rgba(255,255,255,.06);animation:spin 80s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.titles{position:relative}
+.titles .presents{display:block;margin-bottom:34px}
+.hero h1{margin:0;font:italic 400 clamp(76px,15vw,230px)/.82 var(--serif);letter-spacing:-.03em}
+.hero h1 span{display:block;background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 6px 24px rgba(0,0,0,.8))}
+.hero h1 span + span{font-style:normal;font-size:.62em;letter-spacing:.08em;margin-top:.12em}
+.hero .role{display:flex;justify-content:center;align-items:center;gap:22px;margin-top:38px;font:700 clamp(10px,1.1vw,13px)/1 var(--wide);letter-spacing:.6em;text-transform:uppercase;color:var(--silver)}
+.hero .role::before,.hero .role::after{content:"";width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--silver))}
+.hero .role::after{transform:scaleX(-1)}
+.hero .tag{margin:30px auto 0;max-width:34ch;font:italic 400 clamp(18px,1.8vw,23px)/1.5 var(--serif);color:#cfcfcd}
+
+/* ticker */
+.ticker{overflow:hidden;border-block:1px solid #18181a;padding-block:22px;background:#050505}
+.ticker .track{display:flex;width:max-content;animation:tick 46s linear infinite}
+.ticker span{white-space:nowrap;padding-right:40px;font:italic 400 clamp(26px,3vw,40px)/1 var(--serif);color:#bdbdbb;display:flex;align-items:center;gap:40px}
+.ticker span::after{content:"";width:7px;height:7px;transform:rotate(45deg);border:1px solid #6a6a6c}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+section{padding-block:clamp(90px,12vw,160px)}
+
+/* dossier */
+.dossier{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(36px,6vw,96px);align-items:start}
+.dossier .big{margin-top:44px;font:400 clamp(24px,2.4vw,32px)/1.4 var(--serif);color:var(--ink)}
+.dossier .big em{background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent}
+.dossier .rest{margin-top:28px;display:grid;gap:1.1em;color:#b5b5b3;max-width:56ch}
+.vitals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:48px;border-top:1px solid var(--edge)}
+.vitals div{padding:20px 0;border-bottom:1px solid var(--edge)}
+.vitals div:nth-child(odd){padding-right:20px;border-right:1px solid var(--edge)}
+.vitals div:nth-child(even){padding-left:24px}
+.vitals dt{font:400 10px/1.4 var(--wide);letter-spacing:.36em;text-transform:uppercase;color:var(--dim)}
+.vitals dd{margin:8px 0 0;font:italic 400 26px/1.2 var(--serif)}
+
+.idcard{--c:22px;background:linear-gradient(150deg,#333335,#0c0c0d 55%,#2a2a2c);padding:1px;position:sticky;top:96px}
+.idcard .in{background:#0b0b0c;padding:18px}
+.idcard .top{display:flex;justify-content:space-between;margin-bottom:14px}
+.photo{position:relative;aspect-ratio:4/5;max-width:100%;overflow:hidden;background:#000}
+.photo canvas{position:absolute;inset:0;width:100%;height:100%;filter:grayscale(1) contrast(1.05) brightness(.5)}
+.photo::before{content:"";position:absolute;inset:0;z-index:2;background:radial-gradient(ellipse at 50% 50%,rgba(0,0,0,.55) 0%,rgba(0,0,0,.35) 45%,rgba(0,0,0,.8) 90%);pointer-events:none}
+.photo .redact{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;text-align:center;width:80%}
+.photo .redact b{display:block;font:italic 400 34px/1 var(--serif);color:var(--ink)}
+.photo .redact small{display:block;margin-top:12px;font:400 9px/1.6 var(--wide);letter-spacing:.4em;text-transform:uppercase;color:var(--silver)}
+.photo .redact::before{content:"";display:block;margin:0 auto 16px;width:1px;height:40px;background:linear-gradient(transparent,var(--silver))}
+.idcard dl{margin:16px 0 0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 18px}
+.idcard dt{font:400 9px/2 var(--wide);letter-spacing:.32em;text-transform:uppercase;color:var(--dim)}
+.idcard dd{margin:0;font:400 15px/1.6 var(--sans);letter-spacing:.04em}
+
+/* chapters / timeline */
+.tl{margin:64px 0 0;padding:0;list-style:none;counter-reset:c}
+.tl li{counter-increment:c;display:grid;grid-template-columns:120px minmax(0,1fr) minmax(0,1fr);gap:36px;padding-block:34px;border-top:1px solid var(--edge);align-items:baseline;transition:padding-left .5s cubic-bezier(.2,.7,.2,1),background .4s}
+.tl li:last-child{border-bottom:1px solid var(--edge)}
+.tl li::before{content:counter(c,upper-roman);font:italic 400 40px/1 var(--serif);color:transparent;background:var(--chrome);-webkit-background-clip:text;background-clip:text}
+.tl li:hover{padding-left:18px;background:linear-gradient(90deg,rgba(255,255,255,.03),transparent 60%)}
+.tl h3{margin:0;font:400 clamp(26px,2.8vw,38px)/1.1 var(--serif)}
+.tl h3 small{display:block;margin-bottom:10px;font:400 11px/1.4 var(--wide);letter-spacing:.34em;text-transform:uppercase;color:var(--muted)}
+.tl p{color:#aaaaa8}
+
+/* quote */
+.quote{text-align:center;background:#000;border-block:1px solid #18181a;position:relative;overflow:hidden}
+.quote blockquote{margin:0 auto;max-width:18ch;font:italic 400 clamp(40px,6.4vw,96px)/1.02 var(--serif);letter-spacing:-.015em}
+.quote cite{display:block;margin-top:40px;font:400 10px/1.6 var(--wide);font-style:normal;letter-spacing:.44em;text-transform:uppercase;color:var(--muted)}
+
+/* skills */
+.skills{margin-top:64px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 64px}
+.skill{padding-block:28px 30px;border-top:1px solid var(--edge)}
+.skill .hd{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.skill h3{margin:0;font:400 28px/1.2 var(--serif)}
+.skill .n{font:italic 400 48px/1 var(--serif);font-variant-numeric:tabular-nums}
+.meter{height:2px;margin:18px 0 16px;background:#1d1d1f;position:relative;overflow:hidden}
+.meter i{position:absolute;inset:0 auto 0 0;width:var(--v);background:linear-gradient(90deg,#4a4a4c,#ffffff 75%,#9b9b9d)}
+.meter i::after{content:"";position:absolute;inset:0;width:30%;background:linear-gradient(90deg,transparent,#fff,transparent);animation:glint 3.6s ease-in-out infinite}
+@keyframes glint{from{transform:translateX(-120%)}to{transform:translateX(420%)}}
+.skill p{color:var(--muted);font-size:16px}
+
+/* log */
+.log{margin-top:56px;overflow-x:auto;border-top:1px solid var(--edge-hi)}
+.log table{width:100%;border-collapse:collapse;min-width:640px}
+.log th{font:400 9px/1.4 var(--wide);letter-spacing:.36em;text-transform:uppercase;color:var(--dim);text-align:left;padding:16px 18px 16px 0;border-bottom:1px solid var(--edge)}
+.log td{padding:18px 18px 18px 0;border-bottom:1px solid var(--edge);vertical-align:top;color:#c2c2c0;font-size:16px}
+.log td:first-child{font:italic 400 18px/1.4 var(--serif);color:var(--muted);white-space:nowrap}
+.log td:last-child{font:italic 400 19px/1.3 var(--serif);color:var(--ink);white-space:nowrap}
+.log tbody tr{transition:background .25s}
+.log tbody tr:hover{background:rgba(255,255,255,.025)}
+
+/* credits footer */
+footer{background:#000;border-top:1px solid #18181a;padding-block:110px 56px;text-align:center}
+.credits{display:grid;gap:26px;margin-bottom:80px}
+.credits div{display:grid;grid-template-columns:1fr auto 1fr;gap:22px;align-items:baseline}
+.credits dt{text-align:right;font:400 10px/1.6 var(--wide);letter-spacing:.38em;text-transform:uppercase;color:var(--dim)}
+.credits dd{margin:0;text-align:left;font:italic 400 22px/1.3 var(--serif)}
+.credits span{width:6px;height:6px;transform:rotate(45deg);border:1px solid #555;align-self:center}
+footer .big{font:italic 400 clamp(64px,12vw,180px)/.85 var(--serif);letter-spacing:-.03em}
+footer p{margin:40px auto 0;max-width:60ch;font-size:13px;color:var(--dim)}
+
+@media (max-width:900px){
+  .dossier,.skills{grid-template-columns:minmax(0,1fr)}
+  .idcard{position:static;max-width:380px}
+  .tl li{grid-template-columns:minmax(0,1fr);gap:10px}
+  .bar nav{display:none}
+}
+@media (max-width:520px){
+  .hero .role{letter-spacing:.3em;gap:12px}.hero .role::before,.hero .role::after{width:24px}
+  .credits div{grid-template-columns:minmax(0,1fr);gap:6px}
+  .credits dt,.credits dd{text-align:center}.credits span{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* ---- readability pass ---- */
+:root{--muted:#b8b8b6;--dim:#8e8e8c;--edge:#2c2c2f;--edge-hi:#55555a;
+  --chrome:linear-gradient(180deg,#ffffff 0%,#e9e9e7 40%,#a9a9ab 52%,#f2f2f0 68%,#c4c4c6 100%)}
+.chapter i{color:var(--ink)}
+.dossier .rest,.tl p,.skill p,.log td{color:#cfcfcd}
+.hero .presents{color:#d0d0ce;text-shadow:0 1px 12px #000,0 0 2px #000}
+.hero .tag{color:#ececea;text-shadow:0 2px 18px #000,0 0 3px #000}
+.hero .role{color:#f1f1ef;text-shadow:0 0 10px #000}
+.disc::after{background:radial-gradient(circle,rgba(0,0,0,.45) 0%,rgba(0,0,0,.6) 55%,rgba(0,0,0,.94) 100%)}
+.big{margin-top:36px;max-width:36ch;font:400 clamp(24px,2.4vw,32px)/1.4 var(--serif);color:var(--ink)}
+.big em{font-style:italic;color:#fff;border-bottom:1px solid var(--edge-hi)}
+
+/* ---- dossier file with tabs ---- */
+.file{display:grid;grid-template-columns:220px minmax(0,1fr) 300px;gap:clamp(24px,3.5vw,48px);margin-top:64px;align-items:start}
+.tabs{position:relative;display:grid;gap:2px;border-left:1px solid var(--edge)}
+.tabs button{all:unset;cursor:pointer;display:flex;align-items:baseline;gap:16px;padding:14px 0 14px 22px;font:400 11px/1.4 var(--wide);letter-spacing:.32em;text-transform:uppercase;color:var(--dim);transition:color .3s,padding-left .4s cubic-bezier(.2,.7,.2,1)}
+.tabs button i{font:italic 400 24px/1 var(--serif);letter-spacing:0;min-width:34px;text-transform:none}
+.tabs button:hover{color:var(--ink)}
+.tabs button[aria-selected="true"]{color:var(--ink);padding-left:30px}
+.tabs button:focus-visible{outline:1px solid var(--silver);outline-offset:2px}
+.tabs .ind{position:absolute;left:-1px;width:2px;background:#fff;box-shadow:0 0 12px rgba(255,255,255,.6);transition:top .5s cubic-bezier(.2,.7,.2,1),height .5s cubic-bezier(.2,.7,.2,1)}
+.panels{min-height:440px;position:relative}
+.panel{animation:panelIn .6s cubic-bezier(.2,.7,.2,1)}
+@keyframes panelIn{from{opacity:0;transform:translateY(14px);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+.ph{margin:0 0 24px;font:italic 400 40px/1 var(--serif);display:flex;align-items:center;gap:18px}
+.ph::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--edge-hi),transparent)}
+.kv{margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--edge)}
+.kv div{padding:18px 0;border-bottom:1px solid var(--edge)}
+.kv div:nth-child(odd){padding-right:20px;border-right:1px solid var(--edge)}
+.kv div:nth-child(even){padding-left:22px}
+.kv dt{font:400 11px/1.4 var(--wide);letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.kv dd{margin:8px 0 0;font:400 22px/1.25 var(--serif);color:var(--ink)}
+.cols{display:grid;gap:1.1em;color:#d4d4d2;font-size:18px;max-width:58ch}
+.note{margin-top:28px;font-size:15px;color:var(--muted)}
+.note a{color:var(--ink)}
+.items{list-style:none;margin:0;padding:0;border-top:1px solid var(--edge)}
+.items li{display:grid;grid-template-columns:180px minmax(0,1fr);gap:20px;padding:18px 0;border-bottom:1px solid var(--edge);align-items:baseline}
+.items b{font:italic 400 24px/1.2 var(--serif);font-weight:400}
+.items span{color:#cfcfcd}
+.people{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px}
+.people li{background:var(--plate);padding:20px 20px 22px;display:grid;gap:4px;border-top:1px solid var(--edge-hi);transition:background .3s,transform .3s}
+.people li:hover{background:#161618;transform:translateY(-3px)}
+.people i{font:400 10px/1 var(--wide);letter-spacing:.3em;color:var(--dim);margin-bottom:10px;font-style:normal}
+.people b{font:400 24px/1.2 var(--serif);font-weight:400}
+.people small{font:400 10px/1.6 var(--wide);letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.people span{margin-top:8px;color:#cfcfcd;font-size:16px}
+.idcard{position:sticky;top:96px}
+
+/* ---- side index ---- */
+.index{position:fixed;right:max(18px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);z-index:8;display:grid;gap:14px;transition:opacity .4s}
+.index a{display:flex;align-items:center;justify-content:flex-end;gap:12px;text-decoration:none;color:var(--dim);font:400 9px/1 var(--wide);letter-spacing:.3em;text-transform:uppercase}
+.index a span{opacity:0;transform:translateX(6px);transition:.3s}
+.index a::after{content:"";width:18px;height:1px;background:currentColor;transition:width .4s}
+.index a:hover span,.index a.on span{opacity:1;transform:none}
+.index a.on{color:#fff}.index a.on::after{width:40px}
+.index.hide{opacity:0;pointer-events:none}
+
+/* ---- transitions ---- */
+.hero h1 span{animation:rise 1.4s cubic-bezier(.2,.7,.2,1) both}
+.hero h1 span + span{animation-delay:.18s}
+.hero .presents{animation:fadeIn 1.6s .1s both}
+.hero .role{animation:fadeIn 1.4s .6s both}
+.hero .tag{animation:fadeIn 1.4s .85s both}
+.disc{animation:discIn 2s cubic-bezier(.2,.7,.2,1) both,breathe 9s 2s ease-in-out infinite}
+@keyframes rise{from{transform:translateY(40px);opacity:.001;letter-spacing:.06em}to{transform:none;opacity:1}}
+@keyframes fadeIn{from{opacity:.001}to{opacity:1}}
+@keyframes discIn{from{transform:translate(-50%,-50%) scale(.6);opacity:.001}to{transform:translate(-50%,-50%) scale(1);opacity:1}}
+.js .rv{opacity:0;transform:translateY(28px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+.js .rv.in{opacity:1;transform:none}
+.js h2.rv{opacity:1;transform:none}
+.js h2.rv .msk{display:inline-block;clip-path:inset(0 100% -.2em 0);transition:clip-path 1.3s cubic-bezier(.7,0,.2,1)}
+.js h2.rv.in .msk{clip-path:inset(-.2em -.1em -.2em 0)}
+.js .tl li.rv{transform:translateX(-24px)}
+.js .tl li.rv.in{transform:none}
+.js .meter i{width:0;transition:width 1.6s cubic-bezier(.2,.7,.2,1)}
+.js .skill.in .meter i{width:var(--v)}
+.js .chapter.rv::after{transform-origin:left;transform:scaleX(0);transition:transform 1.4s .2s cubic-bezier(.7,0,.2,1)}
+.js .chapter.rv.in::after{transform:scaleX(1)}
+
+@media (max-width:1100px){.file{grid-template-columns:200px minmax(0,1fr)}.idcard{grid-column:1 / -1;position:static;max-width:380px}.index{display:none}}
+@media (max-width:760px){
+  .file{grid-template-columns:minmax(0,1fr)}
+  .tabs{grid-auto-flow:column;grid-auto-columns:max-content;overflow-x:auto;border-left:0;border-bottom:1px solid var(--edge)}
+  .tabs button{padding:12px 16px}.tabs button[aria-selected="true"]{padding-left:16px}
+  .tabs .ind{top:auto!important;bottom:-1px;height:2px!important;left:0;transition:left .5s cubic-bezier(.2,.7,.2,1),width .5s cubic-bezier(.2,.7,.2,1)}
+  .kv,.people{grid-template-columns:minmax(0,1fr)}
+  .kv div:nth-child(n){padding:16px 0;border-right:0}
+  .items li{grid-template-columns:minmax(0,1fr);gap:4px}
+  .panels{min-height:0}
+}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;clip-path:none}.js .meter i{width:var(--v)}}
+/* ---- record: acts + accordion ---- */
+.sub{margin-top:24px;max-width:52ch;font:400 20px/1.55 var(--sans);color:#d2d2d0}
+.acts{margin-top:64px;display:grid;gap:56px}
+.act{display:grid;grid-template-columns:220px minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:start}
+.act-hd{position:sticky;top:96px;padding-top:18px;border-top:1px solid #fff}
+.act-hd h3{margin:10px 0 0;font:italic 400 34px/1.05 var(--serif)}
+.ch{list-style:none;margin:0;padding:0;border-top:1px solid var(--edge)}
+.ch li{border-bottom:1px solid var(--edge)}
+.ch summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:64px minmax(0,1fr) 28px;gap:18px;align-items:center;padding:22px 0;transition:padding-left .45s cubic-bezier(.2,.7,.2,1)}
+.ch summary::-webkit-details-marker{display:none}
+.ch summary:hover{padding-left:12px}
+.ch summary:focus-visible{outline:1px solid var(--silver);outline-offset:4px}
+.ch .no{font:italic 400 30px/1 var(--serif);color:transparent;background:var(--chrome);-webkit-background-clip:text;background-clip:text}
+.ch .t{font:400 clamp(22px,2.2vw,30px)/1.15 var(--serif)}
+.ch .t small{display:block;margin-bottom:8px;font:400 11px/1.4 var(--wide);letter-spacing:.32em;text-transform:uppercase;color:var(--muted)}
+.ch .pl{position:relative;width:20px;height:20px;justify-self:end}
+.ch .pl::before,.ch .pl::after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:#fff;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.ch .pl::after{transform:rotate(90deg)}
+.ch details[open] .pl::after{transform:rotate(0)}
+.ch .body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s cubic-bezier(.2,.7,.2,1)}
+.ch details[open] .body{grid-template-rows:1fr}
+.ch .body > div{overflow:hidden;padding-left:82px;display:grid;gap:1em;color:#d6d6d4;max-width:calc(62ch + 82px)}
+.ch details[open] .body > div{padding-bottom:28px;animation:bodyIn .6s cubic-bezier(.2,.7,.2,1)}
+@keyframes bodyIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.ch .body a{color:#fff}
+
+/* ---- red john file ---- */
+.rj{--blood:#b3261e;background:radial-gradient(ellipse at 80% 0%,rgba(179,38,30,.14),transparent 55%),#050505;border-block:1px solid #1d1d1f}
+.rj .chapter::after{background:linear-gradient(90deg,var(--blood),transparent)}
+.rj h2 b{color:#fff}
+.rjgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;margin-top:64px}
+.rjcard{background:#0e0e0f;padding:26px 24px 30px;border-top:1px solid var(--blood);display:grid;gap:12px;align-content:start;transition:background .3s,transform .4s cubic-bezier(.2,.7,.2,1)}
+.rjcard:hover{background:#141415;transform:translateY(-4px)}
+.rjcard h3{margin:0;font:italic 400 26px/1.15 var(--serif)}
+.rjcard p{color:#cfcfcd;font-size:16px}
+.tyger{margin:96px auto;text-align:center}
+.tyger blockquote{margin:0;font:italic 400 clamp(32px,4.4vw,60px)/1.15 var(--serif)}
+.tyger figcaption{margin-top:24px;color:var(--muted)}
+.sh{margin:96px 0 28px;font:italic 400 clamp(34px,4vw,52px)/1 var(--serif);display:flex;align-items:center;gap:20px}
+.sh::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--edge-hi),transparent)}
+.moves{list-style:none;margin:0;padding:0;border-top:1px solid var(--edge)}
+.moves li{display:grid;grid-template-columns:110px minmax(0,1fr) 120px;gap:24px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--edge);transition:background .3s}
+.moves li:hover{background:linear-gradient(90deg,rgba(255,255,255,.03),transparent 70%)}
+.moves .mv{font:400 10px/1.6 var(--wide);letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.moves b{display:block;font:400 24px/1.2 var(--serif);font-weight:400;margin-bottom:6px}
+.moves p{color:#cfcfcd;max-width:62ch}
+.who{justify-self:end;font:400 10px/1 var(--wide);letter-spacing:.26em;text-transform:uppercase;padding:8px 10px 7px;border:1px solid}
+.rj-t{color:#ff8a80;border-color:rgba(179,38,30,.7);background:rgba(179,38,30,.12)}
+.pj-t{color:#0a0a0a;background:var(--chrome);border-color:transparent}
+.seven{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px}
+.seven li{background:#0e0e0f;padding:22px 16px 24px;min-height:170px;display:flex;flex-direction:column;gap:8px;position:relative;border-top:1px solid var(--edge-hi);transition:background .3s}
+.seven li:hover{background:#151516}
+.seven b{font:400 21px/1.15 var(--serif);font-weight:400}
+.seven small{font:400 10px/1.6 var(--wide);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.seven li:not(.hit) b{text-decoration:line-through;text-decoration-color:rgba(255,255,255,.35);text-decoration-thickness:1px}
+.seven .hit{border-top-color:var(--blood);background:linear-gradient(180deg,rgba(179,38,30,.2),#0e0e0f 70%)}
+.seven .hit em{margin-top:auto;font:400 10px/1 var(--wide);font-style:normal;letter-spacing:.3em;text-transform:uppercase;color:#ff8a80}
+.vow{margin-top:110px;padding:clamp(32px,5vw,64px);border:1px solid var(--edge-hi);background:linear-gradient(135deg,#121213,#070707);position:relative}
+.vow::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--blood)}
+.vow p{margin-top:18px;font:italic 400 clamp(26px,3vw,40px)/1.3 var(--serif);max-width:30ch}
+.vow b{font-style:normal;font-weight:400;color:#fff;display:inline-block;margin-top:10px}
+
+@media (max-width:1100px){.rjgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.seven{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:760px){
+  .act{grid-template-columns:minmax(0,1fr)}.act-hd{position:static}
+  .ch summary{grid-template-columns:44px minmax(0,1fr) 22px;gap:12px}
+  .ch .body > div{padding-left:0}
+  .rjgrid{grid-template-columns:minmax(0,1fr)}
+  .moves li{grid-template-columns:minmax(0,1fr);gap:8px}.who{justify-self:start}
+  .seven{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+/* ---- background line art ---- */
+main section,footer{position:relative;overflow:hidden;overflow:clip}
+main section > .wrap,footer > .wrap{position:relative;z-index:1}
+.bgart{position:absolute;z-index:0;pointer-events:none;fill:none;stroke:#fff;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;max-width:none}
+.bgart *{vector-effect:non-scaling-stroke}
+.art-fig-hero{right:2%;bottom:6%;height:86%;width:auto;opacity:.3;z-index:-1}
+.art-fig-hero.l{right:auto;left:3%;transform:scaleX(-1);opacity:.16;height:70%}
+.art-cup{left:-6%;bottom:-4%;width:min(72vw,900px);opacity:.12}
+.art-ds{left:-4%;top:48%;width:min(110vw,1500px);opacity:.11}
+.art-air{right:-8%;top:80%;width:min(100vw,1300px);opacity:.11}
+.art-fig-rj{left:-2%;top:6%;height:min(1500px,70%);width:auto;opacity:.08;stroke:#ff9a90;transform:scaleX(-1)}
+.art-cards{right:-6%;top:4%;width:min(64vw,820px);opacity:.12}
+.art-couch{left:50%;bottom:-2%;transform:translateX(-50%);width:min(120vw,1600px);opacity:.11}
+.art-fig-foot{right:4%;bottom:0;height:90%;width:auto;opacity:.12}
+.js .bgart.draw *{stroke-dasharray:1;stroke-dashoffset:1}
+.js .bgart.draw.in *{animation:draw 3.2s cubic-bezier(.4,0,.2,1) forwards}
+.bgart.draw.in *:nth-child(3n){animation-delay:.25s}.bgart.draw.in *:nth-child(3n+1){animation-delay:.5s}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media (max-width:760px){.art-fig-hero{opacity:.18;height:60%}.art-fig-hero.l{display:none}.art-cup,.art-cards{width:120vw}}
+@media (prefers-reduced-motion:reduce){.js .bgart.draw *{stroke-dasharray:none;stroke-dashoffset:0;animation:none}}
+</style>
+
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <div class="mark">P · JANE</div>
+    <nav aria-label="Sections">
+      <a href="#dossier">Dossier</a>
+      <a href="#record">Record</a>
+      <a href="#redjohn">Red John</a>
+      <a href="#skills">Skills</a>
+      <a href="#complaints">Complaints</a>
+    </nav>
+  </div>
+</header>
+
+<nav class="index hide" aria-label="Page index"><a href="#dossier"><span>Dossier</span></a><a href="#record"><span>Record</span></a><a href="#redjohn"><span>Red John</span></a><a href="#skills"><span>Skills</span></a><a href="#complaints"><span>Complaints</span></a></nav>
+<main>
+<section class="hero" aria-label="Patrick Jane" style="padding-block:0">
+  <div class="stage">
+    <div class="rings" aria-hidden="true"></div>
+    <svg class="bgart art-fig-hero draw" viewBox="0 0 420 1000" aria-hidden="true">
+<g>
+<path d="M210 30c-34 0-56 28-56 62 0 40 24 66 56 66s56-26 56-66c0-34-22-62-56-62z"/>
+<path d="M154 96c-6 2-8 12-2 20M266 96c6 2 8 12 2 20"/>
+<path d="M190 152c0 10-2 20-6 26M230 152c0 10 2 20 6 26"/>
+<path d="M184 178c-30 6-62 14-84 26-14 8-18 24-18 44M236 178c30 6 62 14 84 26 14 8 18 24 18 44"/>
+<path d="M184 178l26 30 26-30"/>
+<path d="M190 186c-8 50-4 110 8 150l12 18M230 186c8 50 4 110-8 150l-12 18"/>
+<path d="M192 190l-20 30 26 30-12 16 16 88M228 190l20 30-26 30 12 16-16 88"/>
+<circle cx="210" cy="250" r="3"/><circle cx="210" cy="300" r="3"/><circle cx="210" cy="350" r="3"/><circle cx="210" cy="400" r="3"/>
+<path d="M160 440c18 10 34 16 50 18 16-2 32-8 50-18"/>
+<path d="M82 248c-6 70-12 140-4 196 6 40 20 70 40 86"/>
+<path d="M108 250c0 60-2 120 4 170 4 30 12 54 26 74"/>
+<path d="M338 248c6 70 12 140 4 196-6 40-20 70-40 86"/>
+<path d="M312 250c0 60 2 120-4 170-4 30-12 54-26 74"/>
+<path d="M118 530c-4 30 2 50 26 54 20-6 36-14 46-26"/>
+<path d="M302 530c4 30-2 50-26 54-20-6-36-14-46-26"/>
+<path d="M118 530c4 40 14 70 26 54M302 530c-4 40-14 70-26 54"/>
+<path d="M140 590c-6 50-14 100-22 144-8 50-12 120-18 196"/>
+<path d="M206 600c-4 46-12 92-22 136-10 52-16 120-26 194"/>
+<path d="M100 930c-14 8-34 20-42 30-4 8 2 12 12 12 34 0 68-2 96-6 8-4 6-16-2-34"/>
+<path d="M214 600c10 42 24 88 34 130 12 52 22 110 32 172"/>
+<path d="M282 588c4 46 10 92 16 136 8 56 20 116 34 170"/>
+<path d="M280 904c-4 18-6 32-2 40 30 6 64 8 92 4 10-4 6-14-6-18-14-4-26-14-36-30"/>
+<path d="M120 740c14 6 34 8 56 2M244 728c16 6 36 8 56 0"/>
+<path d="M380 300c18 30 26 70 20 110M396 360c10 20 12 44 8 68M30 620c-10 40-6 90 12 130M16 690c-4 24-2 50 8 70"/>
+</g>
+</svg>
+    <svg class="bgart art-fig-hero l draw" viewBox="0 0 420 1000" aria-hidden="true">
+<g>
+<path d="M210 30c-34 0-56 28-56 62 0 40 24 66 56 66s56-26 56-66c0-34-22-62-56-62z"/>
+<path d="M154 96c-6 2-8 12-2 20M266 96c6 2 8 12 2 20"/>
+<path d="M190 152c0 10-2 20-6 26M230 152c0 10 2 20 6 26"/>
+<path d="M184 178c-30 6-62 14-84 26-14 8-18 24-18 44M236 178c30 6 62 14 84 26 14 8 18 24 18 44"/>
+<path d="M184 178l26 30 26-30"/>
+<path d="M190 186c-8 50-4 110 8 150l12 18M230 186c8 50 4 110-8 150l-12 18"/>
+<path d="M192 190l-20 30 26 30-12 16 16 88M228 190l20 30-26 30 12 16-16 88"/>
+<circle cx="210" cy="250" r="3"/><circle cx="210" cy="300" r="3"/><circle cx="210" cy="350" r="3"/><circle cx="210" cy="400" r="3"/>
+<path d="M160 440c18 10 34 16 50 18 16-2 32-8 50-18"/>
+<path d="M82 248c-6 70-12 140-4 196 6 40 20 70 40 86"/>
+<path d="M108 250c0 60-2 120 4 170 4 30 12 54 26 74"/>
+<path d="M338 248c6 70 12 140 4 196-6 40-20 70-40 86"/>
+<path d="M312 250c0 60 2 120-4 170-4 30-12 54-26 74"/>
+<path d="M118 530c-4 30 2 50 26 54 20-6 36-14 46-26"/>
+<path d="M302 530c4 30-2 50-26 54-20-6-36-14-46-26"/>
+<path d="M118 530c4 40 14 70 26 54M302 530c-4 40-14 70-26 54"/>
+<path d="M140 590c-6 50-14 100-22 144-8 50-12 120-18 196"/>
+<path d="M206 600c-4 46-12 92-22 136-10 52-16 120-26 194"/>
+<path d="M100 930c-14 8-34 20-42 30-4 8 2 12 12 12 34 0 68-2 96-6 8-4 6-16-2-34"/>
+<path d="M214 600c10 42 24 88 34 130 12 52 22 110 32 172"/>
+<path d="M282 588c4 46 10 92 16 136 8 56 20 116 34 170"/>
+<path d="M280 904c-4 18-6 32-2 40 30 6 64 8 92 4 10-4 6-14-6-18-14-4-26-14-36-30"/>
+<path d="M120 740c14 6 34 8 56 2M244 728c16 6 36 8 56 0"/>
+<path d="M380 300c18 30 26 70 20 110M396 360c10 20 12 44 8 68M30 620c-10 40-6 90 12 130M16 690c-4 24-2 50 8 70"/>
+</g>
+</svg>
+    <div class="disc" aria-hidden="true"><canvas id="chrome"></canvas></div>
+    <div class="titles wrap">
+      <span class="wide presents">The California Bureau of Investigation presents</span>
+      <h1><span>Patrick</span><span>JANE</span></h1>
+      <div class="role">Consultant · Mentalist</div>
+      <p class="tag">No badge. No gun. No psychic powers. Just a man who notices everything.</p>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true">
+  <div class="track">
+    <span>Former psychic</span><span>Hypnotist</span><span>Tea, never coffee</span><span>The three-piece suit</span><span>The couch</span><span>The smile</span><span>Professional liar, retired</span>
+    <span>Former psychic</span><span>Hypnotist</span><span>Tea, never coffee</span><span>The three-piece suit</span><span>The couch</span><span>The smile</span><span>Professional liar, retired</span>
+  </div>
+</div>
+
+<section id="dossier">
+  <svg class="bgart art-cup draw" viewBox="0 0 600 520" aria-hidden="true">
+<g>
+<path d="M150 230c0 0 10 160 140 160s140-160 140-160"/>
+<ellipse cx="290" cy="230" rx="140" ry="28"/>
+<ellipse cx="290" cy="232" rx="122" ry="20"/>
+<path d="M425 262c40-14 76 6 74 40-2 36-46 52-90 40"/>
+<path d="M420 280c26-8 52 4 50 24-2 22-30 30-60 24"/>
+<ellipse cx="290" cy="400" rx="230" ry="48"/>
+<ellipse cx="290" cy="396" rx="130" ry="20"/>
+<path d="M60 404c10 26 110 46 230 46s220-20 230-46"/>
+<path d="M240 190c-30-30 30-50 0-90s20-60 10-90"/>
+<path d="M300 196c-20-30 26-46 2-80s16-56 6-90"/>
+<path d="M352 192c-24-24 18-44-4-72"/>
+</g>
+</svg>
+  <div class="wrap">
+    <div class="chapter"><i>Dossier</i><span class="wide">File 7-114 · five categories</span></div>
+    <h2 class="reveal-h">The man <b>on the couch</b></h2>
+    <p class="big">He grew up conning carnival crowds, got rich pretending to talk to the dead, and lost everything because of it. Now he uses <em>every one of those tricks</em> to catch killers.</p>
+
+    <div class="file">
+      <div class="tabs" role="tablist" aria-label="Dossier categories">
+        <button role="tab" id="t-id" aria-controls="p-id" aria-selected="true"><i>I</i><span>Identity</span></button>
+        <button role="tab" id="t-bg" aria-controls="p-bg" aria-selected="false"><i>II</i><span>Background</span></button>
+        <button role="tab" id="t-me" aria-controls="p-me" aria-selected="false"><i>III</i><span>Methods</span></button>
+        <button role="tab" id="t-ha" aria-controls="p-ha" aria-selected="false"><i>IV</i><span>Habits</span></button>
+        <button role="tab" id="t-as" aria-controls="p-as" aria-selected="false"><i>V</i><span>Associates</span></button>
+        <span class="ind" aria-hidden="true"></span>
+      </div>
+
+      <div class="panels">
+        <div class="panel" role="tabpanel" id="p-id" aria-labelledby="t-id">
+          <h3 class="ph">Identity</h3>
+          <dl class="kv">
+            <div><dt>Full name</dt><dd>Patrick Jane</dd></div>
+            <div><dt>Status</dt><dd>Civilian consultant</dd></div>
+            <div><dt>Unit</dt><dd>Serious Crimes, CBI</dd></div>
+            <div><dt>Former trade</dt><dd>Television medium</dd></div>
+            <div><dt>Vehicle</dt><dd>Citroën DS, 1970s</dd></div>
+            <div><dt>Residence</dt><dd>A motel room, later an Airstream</dd></div>
+            <div><dt>Desk</dt><dd>Declined. Uses the couch.</dd></div>
+            <div><dt>Armed</dt><dd>Never</dd></div>
+          </dl>
+        </div>
+
+        <div class="panel" role="tabpanel" id="p-bg" aria-labelledby="t-bg" hidden>
+          <h3 class="ph">Background</h3>
+          <div class="cols">
+            <p>Jane walks into a crime scene in a three-piece suit, ignores the tape and picks up the one thing nobody thought to look at. He doesn't carry a gun or a badge. He carries a teacup.</p>
+            <p>Colleagues find him charming for about a week. After that they find him exhausting, reckless and almost always right. He knows this, and he enjoys it more than he should.</p>
+          </div>
+          <p class="note">Full history under <a href="#record">Record</a>, in twelve chapters. The killer who shaped it is in the <a href="#redjohn">Red John file</a>.</p>
+        </div>
+
+        <div class="panel" role="tabpanel" id="p-me" aria-labelledby="t-me" hidden>
+          <h3 class="ph">Methods</h3>
+          <ul class="items">
+            <li><b>Cold reading</b><span>Small physical tells turned into big conclusions, said out loud until someone flinches.</span></li>
+            <li><b>Memory palace</b><span>Facts stored in the rooms of an imaginary house and walked back through on demand.</span></li>
+            <li><b>Hypnosis</b><span>For witnesses who can't remember, and colleagues who would rather not.</span></li>
+            <li><b>The setup</b><span>A staged situation that makes the guilty person prove it themselves.</span></li>
+          </ul>
+        </div>
+
+        <div class="panel" role="tabpanel" id="p-ha" aria-labelledby="t-ha" hidden>
+          <h3 class="ph">Habits</h3>
+          <ul class="items">
+            <li><b>Tea</b><span>Hot, from his own cup, brewed before anyone else is in. Coffee is declined on principle.</span></li>
+            <li><b>The couch</b><span>A brown leather couch in the bullpen. He thinks there. Sometimes he sleeps there.</span></li>
+            <li><b>The suit</b><span>Three pieces, no tie. Worn to every crime scene, including the muddy ones.</span></li>
+            <li><b>Sleight of hand</b><span>Coins and cards, mostly to pass the time. Occasionally to lift a key.</span></li>
+          </ul>
+        </div>
+
+        <div class="panel" role="tabpanel" id="p-as" aria-labelledby="t-as" hidden>
+          <h3 class="ph">Associates</h3>
+          <ul class="people">
+            <li><i>T.L.</i><b>Teresa Lisbon</b><small>Senior Agent, team lead</small><span>Signs off on his ideas, then cleans up after them.</span></li>
+            <li><i>K.C.</i><b>Kimball Cho</b><small>Agent</small><span>Unimpressed by everything, which Jane finds restful.</span></li>
+            <li><i>W.R.</i><b>Wayne Rigsby</b><small>Agent</small><span>Most likely to fall for a trick. Takes it well.</span></li>
+            <li><i>G.V.P.</i><b>Grace Van Pelt</b><small>Agent</small><span>The team's tech lead and its most open-minded member.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="idcard cut" aria-label="Identification card">
+        <div class="in">
+          <div class="top wide"><span>Ident.</span><span>7-114</span></div>
+          <div class="photo">
+            <canvas id="portrait" aria-hidden="true"></canvas>
+            <div class="redact"><b>Photograph withheld</b><small>Subject declined. Twice.</small></div>
+          </div>
+          <dl>
+            <dt>Name</dt><dd>Jane, Patrick</dd>
+            <dt>Reports to</dt><dd>Sr. Agt. Teresa Lisbon</dd>
+          </dl>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="record" style="padding-top:0">
+  <svg class="bgart art-ds draw" viewBox="0 0 900 320" aria-hidden="true">
+<g>
+<path d="M110 252H64c-16 0-26-12-24-26 2-12 12-20 26-24 70-18 160-30 264-42 30-26 60-46 100-54 70-12 150-12 220-2 40 6 70 26 100 56 40 8 76 16 100 26 14 6 22 20 22 34l-4 32h-80"/>
+<path d="M110 252c0-34 27-62 60-62s60 28 60 62"/>
+<circle cx="170" cy="254" r="46"/><circle cx="170" cy="254" r="22"/>
+<path d="M230 252h370"/>
+<path d="M600 252v-50c0-6 4-10 10-10h150c6 0 10 6 10 12l2 48"/>
+<path d="M614 252c6 20 30 34 66 34s60-14 66-34"/>
+<path d="M330 160c30-26 64-44 104-50 66-10 140-8 206 2 30 6 56 20 84 46"/>
+<path d="M346 162h378"/>
+<path d="M520 104l-4 58M650 110l-12 52"/>
+<path d="M60 204c150-8 520-8 800 6"/>
+<path d="M330 162l-10 90M520 162v90"/>
+<circle cx="66" cy="214" r="8"/>
+<path d="M820 210l28 6"/>
+</g>
+</svg>
+  <svg class="bgart art-air draw" viewBox="0 0 900 380" aria-hidden="true">
+<g>
+<path d="M120 290c-40 0-60-40-60-100 0-80 50-130 140-140 140-14 360-14 500 0 90 10 140 60 140 140 0 60-20 100-60 100z"/>
+<path d="M140 270c-30 0-46-30-46-80 0-64 40-104 110-112"/>
+<path d="M200 52v236M280 48v240M360 46v244M440 46v244M520 46v244M600 48v240M680 52v236"/>
+<rect x="250" y="110" width="150" height="70" rx="30"/>
+<rect x="540" y="96" width="70" height="170" rx="14"/>
+<path d="M560 180h10"/>
+<rect x="680" y="112" width="110" height="60" rx="26"/>
+<circle cx="470" cy="300" r="44"/><circle cx="470" cy="300" r="20"/>
+<path d="M60 250l-50 30h-6"/>
+<path d="M30 270v40M20 312h20"/>
+<path d="M80 200c180 10 560 10 750 0"/>
+</g>
+</svg>
+  <div class="wrap">
+    <div class="chapter"><i>Record</i><span class="wide">Twelve chapters · open any entry for the full account</span></div>
+    <h2>How it <b>all began</b></h2>
+    <p class="sub">From a carnival tent to the Bureau couch. Each chapter opens for the full entry.</p>
+
+    <div class="acts">
+      <div class="act">
+        <div class="act-hd"><span class="wide">Act one</span><h3>The performer</h3></div>
+        <ol class="ch" start="1">
+          <li><details open><summary><span class="no">I</span><span class="t"><small>Childhood</small>Raised in the carnival</span><span class="pl" aria-hidden="true"></span></summary>
+            <div class="body"><div><p>Patrick grew up on the road with his father, Alex Jane, a carnival huckster who saw early that his son had a gift for reading people. Alex put the boy to work as a child prodigy psychic and coached him to work the crowd.</p><p>It was there that Patrick learned the fundamentals he still uses: watch the hands, watch the eyes, say something vague and let the mark fill in the rest. He learned that most people want to be fooled, and that a confident lie is easier to believe than an awkward truth.</p></div></div></details></li>
+          <li><details><summary><span class="no">II</span><span class="t"><small>Angela</small>The carnival girl</span><span class="pl" aria-hidden="true"></span></summary>
+            <div class="body"><div><p>He met Angela Ruskin on the same circuit. She came from a carnival family too, knew every trick he did, and wasn't impressed by any of them. They married young, left the carnival together and had a daughter, Charlotte Anne.</p><p>By every account, including his own, those were the only years he was happy. He wears his wedding ring to this day.</p></div></div></details></li>
+          <li><details><summary><span class="no">III</span><span class="t"><small>Fame</small>Psychic to the rich</span><span class="pl" aria-hidden="true"></span></summary>
+            <div class="body"><div><p>Jane took the carnival act to television and private clients. He held séances for grieving widows, "read" businessmen for a fee, and bought a large house in Malibu on the proceeds. He was charming, famous and completely fraudulent.</p><p>Police departments began asking for his help with cases. He enjoyed the attention more than the work, and he enjoyed being right more than either.</p></div></div></details></li>
+          <li><details><summary><span class="no">IV</span><span class="t"><small>The interview</small>One sentence too many</span><span class="pl" aria-hidden="true"></span></summary>
+            <div class="body"><div><p>During a television interview he was asked about Red John, a serial killer the police had been chasing for years. Jane offered a psychic profile on air and went further than he needed to, describing the killer as a sad, lonely little man.</p><p>He was showing off. He had no idea who he was talking about.</p></div></div></details></li>
+        </ol>
+      </div>
+
+      <div class="act">
+        <div class="act-hd"><span class="wide">Act two</span><h3>The loss</h3></div>
+        <ol class="ch" start="5">
+          <li><details><summary><span class="no">V</span><span class="t"><small>That night</small>The note on the door</span><span class="pl" aria-hidden="true"></span></summary>
+            <div class="body"><div><p>Jane came home that night to find a note taped to his bedroom door. Red John had written to him directly, objecting to being insulted in public, in a polite and almost friendly tone.</p><p>Behind the door, Angela and Charlotte were dead. On the wall above them was a smiling face drawn in their blood. Jane kept the house. For years he slept on a mattress in that room, under the face on the wall.</p></div></div></details></li>
+          <li><details><summary><span class="no">VI</span><span class="t"><small>Afterwards</small>The sanitarium</span><span class="pl" aria-hidden="true"></span></summary>
+            <div class="body"><div><p>Jane broke down completely. He spent months in a psychiatric facility under the care of Dr. Sophie Miller, barely speaking at first and then speaking only about one thing.</p><p>He came out with two decisions made. He would never pretend to be psychic again. And he would find the man who killed his family.</p></div></div></details></li>
+          <li><details><summary><span class="no">VII</span><span class="t"><small>The confession</small>Admitting the act</span><span class="pl" aria-hidden="true"></span></summary>
+            <div class="body"><div><p>He publicly admitted that his career had been a fraud. There are no psychics, he said. There is only reading people. The admission cost him most of his money and all of his clients.</p><p>It also gave him the one thing he wanted: a reason for the police to take his skills seriously.</p></div></div></details></li>
+        </ol>
+      </div>
+
+      <div class="act">
+        <div class="act-hd"><span class="wide">Act three</span><h3>The hunt</h3></div>
+        <ol class="ch" start="8">
+          <li><details><summary><span class="no">VIII</span><span class="t"><small>Sacramento</small>Joining the CBI</span><span class="pl" aria-hidden="true"></span></summary>
+            <div class="body"><div><p>The California Bureau of Investigation had jurisdiction over Red John. Jane offered his services as an unpaid consultant and was assigned to Senior Agent Teresa Lisbon's team, alongside Kimball Cho, Wayne Rigsby and Grace Van Pelt.</p><p>Officially he helped close ordinary murders, and he closed a great many of them. Unofficially every case was a way to stay close to the Red John file.</p></div></div></details></li>
+          <li><details><summary><span class="no">IX</span><span class="t"><small>Ten years</small>The game</span><span class="pl" aria-hidden="true"></span></summary>
+            <div class="body"><div><p>For roughly a decade Red John and Jane played against each other. Red John left messages, killed people close to the investigation and planted followers inside law enforcement. Jane set traps, faked a breakdown and once shot a man in a crowded mall.</p><p>The full account is in the <a href="#redjohn">Red John file</a> below.</p></div></div></details></li>
+          <li><details><summary><span class="no">X</span><span class="t"><small>The end</small>Face to face</span><span class="pl" aria-hidden="true"></span></summary>
+            <div class="body"><div><p>Jane finally identified Red John as Thomas McAllister, sheriff of Napa County. He chased him into a park and killed him with his own hands, keeping the promise he had made in the sanitarium.</p><p>Then, for the first time in years, he had nothing left to do.</p></div></div></details></li>
+        </ol>
+      </div>
+
+      <div class="act">
+        <div class="act-hd"><span class="wide">Act four</span><h3>After</h3></div>
+        <ol class="ch" start="11">
+          <li><details><summary><span class="no">XI</span><span class="t"><small>Exile</small>South America</span><span class="pl" aria-hidden="true"></span></summary>
+            <div class="body"><div><p>A killing is still a killing. Jane fled the country and spent about two years living quietly on an island in South America, writing letters to Lisbon.</p><p>He came back on his own terms: the FBI agreed to grant him immunity if he would consult for them.</p></div></div></details></li>
+          <li><details><summary><span class="no">XII</span><span class="t"><small>Austin</small>A new life</span><span class="pl" aria-hidden="true"></span></summary>
+            <div class="body"><div><p>He joined the FBI in Austin, Texas, and asked for Lisbon to work with him. He traded the motel room for an Airstream trailer and slowly started living like a man with a future.</p><p>He and Teresa Lisbon married. Last anyone heard, they were expecting a child.</p></div></div></details></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="redjohn" class="rj">
+  <svg class="bgart art-fig-rj draw" viewBox="0 0 420 1000" aria-hidden="true">
+<g>
+<path d="M210 30c-34 0-56 28-56 62 0 40 24 66 56 66s56-26 56-66c0-34-22-62-56-62z"/>
+<path d="M154 96c-6 2-8 12-2 20M266 96c6 2 8 12 2 20"/>
+<path d="M190 152c0 10-2 20-6 26M230 152c0 10 2 20 6 26"/>
+<path d="M184 178c-30 6-62 14-84 26-14 8-18 24-18 44M236 178c30 6 62 14 84 26 14 8 18 24 18 44"/>
+<path d="M184 178l26 30 26-30"/>
+<path d="M190 186c-8 50-4 110 8 150l12 18M230 186c8 50 4 110-8 150l-12 18"/>
+<path d="M192 190l-20 30 26 30-12 16 16 88M228 190l20 30-26 30 12 16-16 88"/>
+<circle cx="210" cy="250" r="3"/><circle cx="210" cy="300" r="3"/><circle cx="210" cy="350" r="3"/><circle cx="210" cy="400" r="3"/>
+<path d="M160 440c18 10 34 16 50 18 16-2 32-8 50-18"/>
+<path d="M82 248c-6 70-12 140-4 196 6 40 20 70 40 86"/>
+<path d="M108 250c0 60-2 120 4 170 4 30 12 54 26 74"/>
+<path d="M338 248c6 70 12 140 4 196-6 40-20 70-40 86"/>
+<path d="M312 250c0 60 2 120-4 170-4 30-12 54-26 74"/>
+<path d="M118 530c-4 30 2 50 26 54 20-6 36-14 46-26"/>
+<path d="M302 530c4 30-2 50-26 54-20-6-36-14-46-26"/>
+<path d="M118 530c4 40 14 70 26 54M302 530c-4 40-14 70-26 54"/>
+<path d="M140 590c-6 50-14 100-22 144-8 50-12 120-18 196"/>
+<path d="M206 600c-4 46-12 92-22 136-10 52-16 120-26 194"/>
+<path d="M100 930c-14 8-34 20-42 30-4 8 2 12 12 12 34 0 68-2 96-6 8-4 6-16-2-34"/>
+<path d="M214 600c10 42 24 88 34 130 12 52 22 110 32 172"/>
+<path d="M282 588c4 46 10 92 16 136 8 56 20 116 34 170"/>
+<path d="M280 904c-4 18-6 32-2 40 30 6 64 8 92 4 10-4 6-14-6-18-14-4-26-14-36-30"/>
+<path d="M120 740c14 6 34 8 56 2M244 728c16 6 36 8 56 0"/>
+<path d="M380 300c18 30 26 70 20 110M396 360c10 20 12 44 8 68M30 620c-10 40-6 90 12 130M16 690c-4 24-2 50 8 70"/>
+</g>
+</svg>
+  <div class="wrap">
+    <div class="chapter"><i>Red John</i><span class="wide">Classified · Serial homicide</span></div>
+    <h2>The man <b>who smiled</b></h2>
+    <p class="sub">A serial killer who signed his work, recruited police officers and spent ten years playing a private game with one man.</p>
+
+    <div class="rjgrid">
+      <article class="rjcard">
+        <span class="wide">Signature</span>
+        <h3>The smiling face</h3>
+        <p>A crude smiley face drawn in the victim's blood on a nearby wall. He left it on purpose, so everyone would know whose work it was.</p>
+      </article>
+      <article class="rjcard">
+        <span class="wide">Method</span>
+        <h3>Patient and cruel</h3>
+        <p>Mostly women. Planned for weeks, staged carefully, and always with an audience in mind. He liked being written about.</p>
+      </article>
+      <article class="rjcard">
+        <span class="wide">Network</span>
+        <h3>The Blake Association</h3>
+        <p>A secret network of police officers, agents and officials loyal to him. Members identified each other with lines from William Blake's "The Tyger."</p>
+      </article>
+      <article class="rjcard">
+        <span class="wide">Interest in Jane</span>
+        <h3>An audience of one</h3>
+        <p>Red John could have killed Jane at any time. He chose not to. He saw Jane as the only person clever enough to appreciate him, and the game mattered more than the win.</p>
+      </article>
+    </div>
+
+    <figure class="tyger">
+      <blockquote>Tyger Tyger, burning bright,<br>In the forests of the night</blockquote>
+      <figcaption class="wide">William Blake, 1794 · the Blake Association's recognition phrase</figcaption>
+    </figure>
+
+    <h3 class="sh">How he played Jane</h3>
+    <ol class="moves">
+      <li><span class="mv">Move 01</span><div><b>The first insult, answered</b><p>Jane mocked him on television. Red John replied by killing Angela and Charlotte, then wrote Jane a note about manners.</p></div><span class="who rj-t">Red John</span></li>
+      <li><span class="mv">Move 02</span><div><b>Notes at the scene</b><p>Over the years, crime scenes came with messages meant only for Jane. A reminder that Red John was paying attention too.</p></div><span class="who rj-t">Red John</span></li>
+      <li><span class="mv">Move 03</span><div><b>The disciple</b><p>Rebecca, a CBI receptionist, turned out to be one of his followers. She was poisoned in custody before she could say anything useful.</p></div><span class="who rj-t">Red John</span></li>
+      <li><span class="mv">Move 04</span><div><b>Kristina Frye</b><p>A psychic Jane argued with about whether the dead can talk. She tried to reach Red John and disappeared. When she returned she was not the same person.</p></div><span class="who rj-t">Red John</span></li>
+      <li><span class="mv">Move 05</span><div><b>The mole</b><p>FBI agent Craig O'Laughlin, engaged to Van Pelt, was exposed as Red John's man inside the investigation.</p></div><span class="who pj-t">Jane</span></li>
+      <li><span class="mv">Move 06</span><div><b>The mall</b><p>A man named Timothy Carter met Jane in a shopping mall food court and claimed to be Red John. Jane shot him dead in public. Carter was a decoy, and Jane stood trial for murder.</p></div><span class="who rj-t">Red John</span></li>
+      <li><span class="mv">Move 07</span><div><b>The fake breakdown</b><p>Jane staged his own collapse and left the CBI so Red John would try to recruit him. It worked, and brought him Lorelei Martins, a woman close to Red John.</p></div><span class="who pj-t">Jane</span></li>
+      <li><span class="mv">Move 08</span><div><b>Lorelei</b><p>Before Lorelei could lead Jane to him, Red John had her killed and staged the scene as a message.</p></div><span class="who rj-t">Red John</span></li>
+      <li><span class="mv">Move 09</span><div><b>The list of seven</b><p>Jane narrowed every possible suspect down to seven names and let it be known he had them. Red John started moving, and moving made him visible.</p></div><span class="who pj-t">Jane</span></li>
+      <li><span class="mv">Move 10</span><div><b>Checkmate</b><p>Jane identified Thomas McAllister, lured him out and killed him in a park.</p></div><span class="who pj-t">Jane</span></li>
+    </ol>
+
+    <h3 class="sh">The list of seven</h3>
+    <ul class="seven">
+      <li><b>Gale Bertram</b><small>CBI Director</small></li>
+      <li><b>Ray Haffner</b><small>Former CBI agent</small></li>
+      <li><b>Bob Kirkland</b><small>Homeland Security</small></li>
+      <li class="hit"><b>Thomas McAllister</b><small>Sheriff, Napa County</small><em>Red John</em></li>
+      <li><b>Brett Partridge</b><small>CBI forensics</small></li>
+      <li><b>Reede Smith</b><small>FBI agent</small></li>
+      <li><b>Bret Stiles</b><small>Cult leader, Visualize</small></li>
+    </ul>
+
+    <div class="vow">
+      <span class="wide">The vow</span>
+      <p>Jane never wanted Red John arrested. He promised himself, and told anyone who asked, that he would find the man personally and kill him.<br><b>Ten years later, he did.</b></p>
+    </div>
+  </div>
+</section>
+
+
+<section class="quote">
+  <div class="wrap">
+    <blockquote>There are no psychics. There's only paying attention.</blockquote>
+    <cite>Patrick Jane · paraphrased, from the file</cite>
+  </div>
+</section>
+
+<section id="skills">
+  <svg class="bgart art-cards draw" viewBox="0 0 640 560" aria-hidden="true">
+<g>
+<g transform="rotate(-36 320 470)"><rect x="250" y="130" width="140" height="210" rx="14"/></g>
+<g transform="rotate(-18 320 470)"><rect x="250" y="130" width="140" height="210" rx="14"/></g>
+<g><rect x="250" y="130" width="140" height="210" rx="14"/><path d="M276 166h18M285 156v20M352 304h18"/><path d="M320 205c-18 22-30 34-30 48 0 12 10 20 20 20 4 0 8-2 10-4-2 10-6 16-12 20h24c-6-4-10-10-12-20 2 2 6 4 10 4 10 0 20-8 20-20 0-14-12-26-30-48z"/></g>
+<g transform="rotate(18 320 470)"><rect x="250" y="130" width="140" height="210" rx="14"/></g>
+<g transform="rotate(36 320 470)"><rect x="250" y="130" width="140" height="210" rx="14"/></g>
+<circle cx="500" cy="440" r="56"/><circle cx="500" cy="440" r="44"/>
+<path d="M470 440l30-24 30 24-30 24z"/>
+</g>
+</svg>
+  <div class="wrap">
+    <div class="chapter"><i>Assessment</i><span class="wide">Bureau evaluation</span></div>
+    <h2>Skills, <b>rated</b></h2>
+    <div class="skills">
+      <article class="skill"><div class="hd"><h3>Cold reading</h3><span class="n chrome">98</span></div><div class="meter"><i style="--v:98%"></i></div><p>A tan line, a nervous laugh, the wrong shoes. He turns small facts into a confession.</p></article>
+      <article class="skill"><div class="hd"><h3>Memory palace</h3><span class="n chrome">95</span></div><div class="meter"><i style="--v:95%"></i></div><p>Names, plates and phone numbers filed in the rooms of an imaginary house, retrieved on demand.</p></article>
+      <article class="skill"><div class="hd"><h3>Hypnosis</h3><span class="n chrome">91</span></div><div class="meter"><i style="--v:91%"></i></div><p>Used on witnesses who can't remember, and occasionally on colleagues who would rather not.</p></article>
+      <article class="skill"><div class="hd"><h3>Following procedure</h3><span class="n chrome">06</span></div><div class="meter"><i style="--v:6%"></i></div><p>Assessed as "technically present." Every trap he sets is unauthorized. Most of them work.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="complaints" style="padding-top:0">
+  <svg class="bgart art-couch draw" viewBox="0 0 900 400" aria-hidden="true">
+<g>
+<path d="M140 160c0-50 40-80 100-84 140-8 280-8 420 0 60 4 100 34 100 84v60"/>
+<path d="M60 220c0-40 20-60 60-60s60 20 60 60v110H60z"/>
+<path d="M720 220c0-40 20-60 60-60s60 20 60 60v110H720z"/>
+<path d="M180 240h540v90H180z"/>
+<path d="M180 240c0-20 10-30 30-30h480c20 0 30 10 30 30"/>
+<path d="M450 212v118"/>
+<path d="M90 330l-6 36M810 330l6 36M200 330l-4 28M700 330l4 28"/>
+<path d="M240 110l20 20M330 104l20 20M420 102l20 20M510 104l20 20M600 108l20 20"/>
+<path d="M210 280c90 6 180 6 240 0M450 280c90 6 180 6 240 0"/>
+</g>
+</svg>
+  <div class="wrap">
+    <div class="chapter"><i>Complaints</i><span class="wide">This fiscal year</span></div>
+    <h2>Forty-one <b>and counting</b></h2>
+    <div class="log">
+      <table>
+        <thead><tr><th>Filed</th><th>By</th><th>Reason given</th><th>Outcome</th></tr></thead>
+        <tbody>
+          <tr><td>03.14</td><td>Vineyard owner, Napa</td><td>Told him at his own party that his wife was planning to leave him.</td><td>She did</td></tr>
+          <tr><td>05.02</td><td>Deputy coroner</td><td>Ate a grape from the evidence table.</td><td>Warning</td></tr>
+          <tr><td>06.27</td><td>City councilman</td><td>Claims he was "read" during a press conference.</td><td>Withdrawn</td></tr>
+          <tr><td>08.09</td><td>Bureau facilities</td><td>Sleeping on the bullpen couch, third week running.</td><td>Couch stays</td></tr>
+          <tr><td>10.30</td><td>Defense attorney</td><td>Hypnotized client during a chat in the hallway.</td><td>Under review</td></tr>
+          <tr><td>11.18</td><td>Sr. Agt. T. Lisbon</td><td>"See attached." Attachment is eleven pages.</td><td>Filed</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <svg class="bgart art-fig-foot draw" viewBox="0 0 420 1000" aria-hidden="true">
+<g>
+<path d="M210 30c-34 0-56 28-56 62 0 40 24 66 56 66s56-26 56-66c0-34-22-62-56-62z"/>
+<path d="M154 96c-6 2-8 12-2 20M266 96c6 2 8 12 2 20"/>
+<path d="M190 152c0 10-2 20-6 26M230 152c0 10 2 20 6 26"/>
+<path d="M184 178c-30 6-62 14-84 26-14 8-18 24-18 44M236 178c30 6 62 14 84 26 14 8 18 24 18 44"/>
+<path d="M184 178l26 30 26-30"/>
+<path d="M190 186c-8 50-4 110 8 150l12 18M230 186c8 50 4 110-8 150l-12 18"/>
+<path d="M192 190l-20 30 26 30-12 16 16 88M228 190l20 30-26 30 12 16-16 88"/>
+<circle cx="210" cy="250" r="3"/><circle cx="210" cy="300" r="3"/><circle cx="210" cy="350" r="3"/><circle cx="210" cy="400" r="3"/>
+<path d="M160 440c18 10 34 16 50 18 16-2 32-8 50-18"/>
+<path d="M82 248c-6 70-12 140-4 196 6 40 20 70 40 86"/>
+<path d="M108 250c0 60-2 120 4 170 4 30 12 54 26 74"/>
+<path d="M338 248c6 70 12 140 4 196-6 40-20 70-40 86"/>
+<path d="M312 250c0 60 2 120-4 170-4 30-12 54-26 74"/>
+<path d="M118 530c-4 30 2 50 26 54 20-6 36-14 46-26"/>
+<path d="M302 530c4 30-2 50-26 54-20-6-36-14-46-26"/>
+<path d="M118 530c4 40 14 70 26 54M302 530c-4 40-14 70-26 54"/>
+<path d="M140 590c-6 50-14 100-22 144-8 50-12 120-18 196"/>
+<path d="M206 600c-4 46-12 92-22 136-10 52-16 120-26 194"/>
+<path d="M100 930c-14 8-34 20-42 30-4 8 2 12 12 12 34 0 68-2 96-6 8-4 6-16-2-34"/>
+<path d="M214 600c10 42 24 88 34 130 12 52 22 110 32 172"/>
+<path d="M282 588c4 46 10 92 16 136 8 56 20 116 34 170"/>
+<path d="M280 904c-4 18-6 32-2 40 30 6 64 8 92 4 10-4 6-14-6-18-14-4-26-14-36-30"/>
+<path d="M120 740c14 6 34 8 56 2M244 728c16 6 36 8 56 0"/>
+<path d="M380 300c18 30 26 70 20 110M396 360c10 20 12 44 8 68M30 620c-10 40-6 90 12 130M16 690c-4 24-2 50 8 70"/>
+</g>
+</svg>
+  <div class="wrap">
+    <dl class="credits">
+      <div><dt>Starring</dt><span></span><dd>Patrick Jane</dd></div>
+      <div><dt>Supervising agent</dt><span></span><dd>Teresa Lisbon</dd></div>
+      <div><dt>Wardrobe</dt><span></span><dd>One three-piece suit</dd></div>
+      <div><dt>Catering</dt><span></span><dd>Tea</dd></div>
+      <div><dt>Location</dt><span></span><dd>The couch, Sacramento</dd></div>
+    </dl>
+    <div class="big chrome">Patrick Jane</div>
+    <p>Unofficial fan tribute to the character from <i>The Mentalist</i> (CBS, 2008–2015). All characters belong to their creators. All text is original.</p>
+  </div>
+</footer>
+
+<script>
+(()=>{
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const FS=`precision highp float;uniform vec2 R;uniform float T;uniform vec2 M;uniform float Z;
+float h(vec2 p){return fract(sin(dot(p,vec2(41.3,289.1)))*43758.5);}
+float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}
+float fbm(vec2 p){float v=0.,a=.5;mat2 m=mat2(1.6,1.2,-1.2,1.6);for(int i=0;i<6;i++){v+=a*n(p);p=m*p;a*=.5;}return v;}
+float H(vec2 p,float t){vec2 q=vec2(fbm(p+vec2(0,t)),fbm(p+vec2(5.2,1.3)-t*.7));
+ vec2 r=vec2(fbm(p+2.6*q+vec2(1.7,9.2)+t*.5),fbm(p+2.6*q+vec2(8.3,2.8)-t*.35));return fbm(p+2.8*r);}
+vec3 env(vec3 d){float y=d.y;vec3 c=vec3(.02)+vec3(.9)*smoothstep(.55,.95,y)+vec3(.35)*smoothstep(.15,.0,abs(y-.1));
+ c+=vec3(1.)*smoothstep(.985,1.,sin(d.x*3.+1.2)*.5+.5)*smoothstep(.0,.6,y);
+ c+=vec3(.5)*smoothstep(.9,1.,sin(d.x*7.-.4)*.5+.5)*smoothstep(-.2,.3,y)*.6;return c;}
+void main(){vec2 uv=gl_FragCoord.xy/R;vec2 p=(gl_FragCoord.xy-.5*R)/R.y*Z;float t=T*.04;
+ vec2 m=(M-.5)*vec2(R.x/R.y,1.)*Z;float md=exp(-4.*length(p-m));p+=md*.1*vec2(sin(t*4.),cos(t*4.));
+ float e=1.5/R.y;float h0=H(p,t),hx=H(p+vec2(e,0),t),hy=H(p+vec2(0,e),t);
+ vec3 nn=normalize(vec3((h0-hx)/e*.006,(h0-hy)/e*.006,1.));nn=normalize(vec3(nn.xy*(1.+md*1.5),nn.z));
+ vec3 rf=reflect(normalize(vec3(p*.15,-1.)),nn);vec3 col=env(rf.xzy);
+ float fres=pow(1.-max(nn.z,0.),2.);col=mix(col*.85,col*1.15,fres);col*=.55+.6*smoothstep(.2,.8,h0);
+ col=pow(col,vec3(1.35))*.75;col*=1.-.35*pow(length(uv-.5)*1.3,2.);col+=(h(gl_FragCoord.xy+T)-.5)*.02;
+ col=vec3(dot(col,vec3(.333)));gl_FragColor=vec4(col,1.);}`;
+function run(cv,zoom,scaleK,seed){
+  const gl=cv.getContext('webgl',{antialias:false});if(!gl)return;
+  const P=gl.createProgram();let ok=true;
+  [[gl.VERTEX_SHADER,'attribute vec2 a;void main(){gl_Position=vec4(a,0,1);}'],[gl.FRAGMENT_SHADER,FS]].forEach(([k,s])=>{const sh=gl.createShader(k);gl.shaderSource(sh,s);gl.compileShader(sh);if(!gl.getShaderParameter(sh,gl.COMPILE_STATUS))ok=false;gl.attachShader(P,sh);});
+  gl.linkProgram(P);if(!ok)return;gl.useProgram(P);
+  gl.bindBuffer(gl.ARRAY_BUFFER,gl.createBuffer());gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+  gl.enableVertexAttribArray(0);gl.vertexAttribPointer(0,2,gl.FLOAT,false,0,0);
+  const U=k=>gl.getUniformLocation(P,k),uR=U('R'),uT=U('T'),uM=U('M');gl.uniform1f(U('Z'),zoom);
+  let mx=.7,my=.5,tx=.7,ty=.5,vis=true;const sc=Math.min(devicePixelRatio||1,1.5)*scaleK;
+  const size=()=>{const r=cv.getBoundingClientRect();cv.width=Math.max(1,r.width*sc|0);cv.height=Math.max(1,r.height*sc|0);gl.viewport(0,0,cv.width,cv.height);};
+  size();addEventListener('resize',size);
+  addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();tx=(e.clientX-r.left)/r.width;ty=1-(e.clientY-r.top)/r.height;});
+  new IntersectionObserver(es=>{vis=es[0].isIntersecting}).observe(cv);
+  const t0=performance.now()-seed*1000;
+  const f=now=>{if(vis){mx+=(tx-mx)*.04;my+=(ty-my)*.04;gl.uniform2f(uR,cv.width,cv.height);gl.uniform1f(uT,(now-t0)/1000);gl.uniform2f(uM,mx,my);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);}if(!reduce)requestAnimationFrame(f);};
+  requestAnimationFrame(f);
+}
+run(document.getElementById('chrome'),1.1,.7,40);
+run(document.getElementById('portrait'),1.6,.8,90);
+})();
+/* tabs */
+(()=>{
+const tabs=[...document.querySelectorAll('.tabs [role=tab]')],ind=document.querySelector('.tabs .ind');
+const mobile=()=>matchMedia('(max-width:760px)').matches;
+function place(t){if(mobile()){ind.style.left=t.offsetLeft+'px';ind.style.width=t.offsetWidth+'px';ind.style.top='';}else{ind.style.top=t.offsetTop+'px';ind.style.height=t.offsetHeight+'px';ind.style.left='';ind.style.width='';}}
+function sel(t,focus){tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;document.getElementById(x.getAttribute('aria-controls')).hidden=!on;});place(t);if(focus)t.focus();}
+tabs.forEach((t,i)=>{t.addEventListener('click',()=>sel(t));t.addEventListener('keydown',e=>{const d={ArrowDown:1,ArrowRight:1,ArrowUp:-1,ArrowLeft:-1}[e.key];if(d){e.preventDefault();sel(tabs[(i+d+tabs.length)%tabs.length],true);}});});
+sel(tabs[0]);addEventListener('resize',()=>place(tabs.find(t=>t.getAttribute('aria-selected')==='true')));
+if(document.fonts)document.fonts.ready.then(()=>place(tabs.find(t=>t.getAttribute('aria-selected')==='true')));
+})();
+/* scroll reveal: only things below the first screen start hidden */
+(()=>{
+if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+document.documentElement.classList.add('js');
+const els=document.querySelectorAll('section:not(.hero) h2, .chapter, .big, .file, .tl li, .sub, .act, .rjcard, .tyger, .sh, .moves li, .seven li, .vow, .quote blockquote, .skill, .log, .credits div, footer .big');
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.15,rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.bgart *').forEach(e=>{if(e.tagName!=='g')e.setAttribute('pathLength','1');});
+const aio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');aio.unobserve(e.target);}}),{threshold:.05});
+document.querySelectorAll('.bgart.draw').forEach(a=>aio.observe(a));
+document.querySelectorAll('section:not(.hero) h2').forEach(h=>{h.innerHTML='<span class="msk">'+h.innerHTML+'</span>';});
+els.forEach((el,i)=>{const r=el.getBoundingClientRect();if(r.top<innerHeight){el.classList.add('rv','in');return;}
+  el.classList.add('rv');if(el.matches('.tl li,.skill,.credits div,.rjcard,.moves li,.seven li'))el.style.transitionDelay=((i%4)*.08)+'s';io.observe(el);});
+/* side index */
+const idx=document.querySelector('.index'),links=[...idx.querySelectorAll('a')];
+const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id));}}),{rootMargin:'-45% 0px -50% 0px'});
+secs.forEach(s=>s&&so.observe(s));
+const hero=document.querySelector('.hero');
+new IntersectionObserver(es=>idx.classList.toggle('hide',es[0].isIntersecting),{threshold:.3}).observe(hero);
+})();
+</script>
+
+</body>
+</html>
