@@ -505,10 +505,81 @@ main section > .wrap,footer > .wrap{position:relative;z-index:1}
 @keyframes ntp{0%{transform:scale(.7);opacity:.9}100%{transform:scale(1.8);opacity:0}}
 @media (max-width:900px){.cmp{grid-template-columns:minmax(0,1fr)}.agent{grid-template-columns:minmax(0,1fr)}.agent.flip .agent-art{order:0}.agent-frame{max-width:420px}.agent-grid{grid-template-columns:minmax(0,1fr)}.tm-stats div{grid-template-columns:110px minmax(0,1fr)}}
 @media (prefers-reduced-motion:reduce){.nt-flow,.nt-pulse,.scan{animation:none!important}.agent-frame img{--p:130%}}
+
+/* ---- boot / spoiler gate ---- */
+html.booting,html.booting body{overflow:hidden}
+html.booting .hero *,html.booting .hero::before,html.booting .hero::after{animation-play-state:paused!important}
+#boot{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:max(20px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(20px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));overflow-y:auto}
+.boot-half{position:fixed;left:0;right:0;height:50.5%;background:#050505;transition:transform 1.2s cubic-bezier(.7,0,.2,1)}
+.boot-half.top{top:0;border-bottom:1px solid #1d1d1f;background:radial-gradient(ellipse at 50% 100%,rgba(255,255,255,.05),transparent 60%),#050505}
+.boot-half.bot{bottom:0;border-top:1px solid #1d1d1f;background:radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.05),transparent 60%),#050505}
+.boot-half::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 3px)}
+#boot.out .boot-half.top{transform:translateY(-101%)}
+#boot.out .boot-half.bot{transform:translateY(101%)}
+.boot-panel{position:relative;z-index:2;width:min(560px,100%);padding:clamp(26px,4vw,40px);border:1px solid #2c2c2f;background:rgba(10,10,11,.92);box-shadow:0 30px 80px rgba(0,0,0,.6);transition:opacity .5s,transform .6s cubic-bezier(.7,0,.2,1);animation:bootIn .9s cubic-bezier(.2,.7,.2,1) both}
+.boot-panel::before,.boot-panel::after{content:"";position:absolute;width:22px;height:22px;border:1px solid #cfcfcd}
+.boot-panel::before{top:-1px;left:-1px;border-width:1px 0 0 1px}.boot-panel::after{bottom:-1px;right:-1px;border-width:0 1px 1px 0}
+@keyframes bootIn{from{opacity:0;transform:translateY(16px) scale(.98)}}
+#boot.out .boot-panel{opacity:0;transform:scale(.96)}
+.boot-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.boot-stamp{font:700 11px/1 var(--wide);letter-spacing:.38em;text-transform:uppercase;color:#e0443c;border:1.5px solid #e0443c;padding:7px 6px 6px 10px;transform:rotate(-4deg)}
+.boot-title{margin:26px 0 6px;font:italic 400 clamp(36px,6vw,54px)/1 var(--serif);color:#f1f1ef}
+.boot-title b{font-style:normal;font-weight:400;background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent}
+.boot-sub{margin-bottom:22px}
+.boot-log{list-style:none;margin:0 0 18px;padding:14px 0 0;border-top:1px solid #222224;min-height:168px;display:grid;align-content:start;gap:7px}
+.boot-log li{display:flex;gap:14px;align-items:baseline;font:400 10px/1.5 var(--wide);letter-spacing:.18em;text-transform:uppercase;color:#b8b8b6;animation:logIn .35s ease both}
+.boot-log li span{color:#626262}
+.boot-log li em{margin-left:auto;font-style:normal;color:#8e8e8c}
+.boot-log li:last-child{color:#fff}
+@keyframes logIn{from{opacity:0;transform:translateX(-6px)}}
+.boot-bar{height:2px;background:#1d1d1f;position:relative;overflow:hidden}
+.boot-bar i{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,#55555a,#fff);box-shadow:0 0 12px rgba(255,255,255,.5)}
+.boot-meta{display:flex;justify-content:space-between;gap:12px;margin-top:10px;font-size:9px}
+.boot-meta #boot-pct{font-variant-numeric:tabular-nums;color:#f1f1ef}
+.boot-warn{margin-top:26px;padding:16px 18px;border:1px solid #3a1a18;border-left:2px solid #e0443c;background:rgba(158,27,23,.07)}
+.boot-warn .wide{color:#ff8a80}
+.boot-warn p{margin-top:8px;font-size:15px;line-height:1.55;color:#d6d6d4}
+.boot-go{all:unset;box-sizing:border-box;margin-top:22px;width:100%;text-align:center;padding:15px 18px 14px;border:1px solid #46464a;font:400 11px/1 var(--wide);letter-spacing:.34em;text-transform:uppercase;color:#8e8e8c;cursor:not-allowed;transition:background .3s,color .3s,border-color .3s}
+#boot.ready .boot-go{cursor:pointer;color:#0a0a0a;background:var(--chrome);border-color:transparent}
+#boot.ready .boot-go:hover{filter:brightness(1.1)}
+.boot-go:focus-visible{outline:1px solid #fff;outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.boot-half,.boot-panel{transition:none;animation:none}}
 </style>
 
 </head>
 <body>
+<div id="boot" role="dialog" aria-modal="true" aria-labelledby="boot-title" aria-describedby="boot-warn">
+  <div class="boot-half top" aria-hidden="true"></div><div class="boot-half bot" aria-hidden="true"></div>
+  <div class="boot-panel">
+    <div class="boot-head"><span class="wide">California Bureau of Investigation</span><span class="boot-stamp">Secret</span></div>
+    <h2 id="boot-title" class="boot-title">Personnel File <b>7-114</b></h2>
+    <p class="wide boot-sub">Restricted access · Serious Crimes Unit</p>
+    <ol class="boot-log" id="boot-log" aria-live="polite"></ol>
+    <div class="boot-bar" aria-hidden="true"><i id="boot-fill"></i></div>
+    <div class="boot-meta wide"><span id="boot-status">Establishing secure channel</span><span id="boot-pct">0%</span></div>
+    <div class="boot-warn" id="boot-warn">
+      <span class="wide">Spoiler warning</span>
+      <p>This file covers all seven seasons of <i>The Mentalist</i>, including the identity of Red John and how the series ends. Proceed only if you have finished the show or do not mind spoilers.</p>
+    </div>
+    <button type="button" class="boot-go" id="boot-go" disabled>Decrypting…</button>
+  </div>
+</div>
+<script>
+(()=>{const b=document.getElementById('boot');if(!b)return;document.documentElement.classList.add('booting');
+const lines=['Verifying clearance level','Clearance 7 confirmed','Decrypting file 7-114','Loading case records · 12 chapters','Cross-referencing Red John file','Redacting witness identities','File ready'];
+const log=document.getElementById('boot-log'),fill=document.getElementById('boot-fill'),pct=document.getElementById('boot-pct'),st=document.getElementById('boot-status'),go=document.getElementById('boot-go');
+const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;const t0=performance.now(),MIN=rm?400:3200;let loaded=document.readyState==='complete',shown=0,ready=false;
+addEventListener('load',()=>{loaded=true;});
+function step(now){const el=now-t0;let p=Math.min(el/MIN,1);if(!loaded)p=Math.min(p,.92);
+  const n=Math.min(lines.length,Math.floor(p*lines.length+.0001)+ (p>=1?0:0));
+  while(shown<Math.min(lines.length-1,Math.floor(p*(lines.length-1)))+ (p>=1?1:0)&&shown<lines.length){const li=document.createElement('li');li.innerHTML='<span>'+String(shown+1).padStart(2,'0')+'</span>'+lines[shown]+(shown<lines.length-1?'<em>OK</em>':'');log.appendChild(li);st.textContent=lines[shown];shown++;}
+  fill.style.width=(p*100).toFixed(1)+'%';pct.textContent=Math.round(p*100)+'%';
+  if(p>=1&&!ready){ready=true;go.disabled=false;go.textContent='I understand · Open file';b.classList.add('ready');try{go.focus({preventScroll:true});}catch(e){}}
+  if(!ready)requestAnimationFrame(step);}
+requestAnimationFrame(step);
+go.addEventListener('click',()=>{b.classList.add('out');document.documentElement.classList.remove('booting');document.documentElement.classList.add('booted');setTimeout(()=>{b.remove();},rm?50:1500);});
+})();
+</script>
 <header class="bar">
   <div class="wrap">
     <div class="mark">P · JANE</div>
